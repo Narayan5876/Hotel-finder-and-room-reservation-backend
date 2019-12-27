@@ -12,8 +12,10 @@ router.post("/upload",(req,res)=>{
 
 //get ko lagi code
 router.get('/user',auth,function(req,res){
+
     User.find().then(function(user_data){
         res.send(user_data);
+
 
     
 }).catch(function(e){
@@ -23,6 +25,32 @@ router.get('/user',auth,function(req,res){
     });
 })
 //yaha sama  get ko code 
+
+// this is for admin type
+router.get('/admin_dashboard',auth,function(req,res){
+user_type = req.user_type
+if(user_type=="admin"){
+    res.send("hello admin welcome admin dashboard")
+}
+else{
+res.status(401).send({ error: 'Please authenticate.' })
+}
+
+})
+
+//for user 
+router.get('/user_dashboard',auth,function(req,res){
+    user_type = req.user_type
+    if(user_type=="user"){
+        res.send("hello user Welcome to user dashboard")
+    }
+    else{
+    res.status(401).send({ error: 'Please authenticate.' })
+    }
+    
+    })
+
+
 
 
 //yaha bata taltira delete ko 
@@ -50,6 +78,9 @@ router.post("/login22", async function(req, res){
    req.body.password)
     const token = await user.generateAuthToken()
     console.log("sucess")
+    
+    
+
    
    })
    

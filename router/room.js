@@ -1,15 +1,15 @@
 const express = require('express')
-const Product = require('../models/product')
+const Product = require('../models/room')
 const router = new express.Router()
 
 
-router.post("/product",(req,res)=>{
+router.post("/room",(req,res)=>{
     //console.log(req.body)
    var myData = new Product(req.body);
    myData.save();
 });
 //get ko lagi code
-router.get('/getProduct',function(req,res){
+router.get('/getroom',function(req,res){
     Product.find().then(function(user_data){
         res.send(user_data);
 
@@ -24,7 +24,7 @@ router.get('/getProduct',function(req,res){
 
 
 //yaha bata taltira delete ko 
-router.delete('/delProduct/:id',function(req,res){
+router.delete('/delroom/:id',function(req,res){
     Product.findByIdAndDelete(req.params.id).then(function(){
 
     }).catch(function(){
@@ -34,7 +34,7 @@ router.delete('/delProduct/:id',function(req,res){
     
 });
 
-router.put('/updateProduct/:id',function(req,res){
+router.put('/updateroom/:id',function(req,res){
     Product.findOneAndUpdate({_id :req.params.id},req.body).then(function(){
         res.send("updated")
     }).catch(function(e){

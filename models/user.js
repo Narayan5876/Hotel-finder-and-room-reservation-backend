@@ -18,6 +18,10 @@ const userSchema =new  mongoose.Schema({
         password:{
             type : String
         },
+        user_type:
+        {
+            type : String
+        },
         tokens: [{
             token: {
             type: String,
